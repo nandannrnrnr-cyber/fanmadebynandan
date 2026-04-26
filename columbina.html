@@ -284,6 +284,14 @@ body {
     opacity: 0;
   }
 }
+
+/* FORCE normal cursor on phones */
+@media (hover: none) {
+  body {
+    cursor: auto !important;
+  }
+}
+    
  </style>
 </head>
 
@@ -695,7 +703,13 @@ Summons continuous Hydro AoE that follows active character.
 
 <script>
   
-  const core = document.querySelector(".cursor-core");
+  const isPC = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+// If NOT PC → remove cursor completely
+if (!isPC) {
+  const cursor = document.querySelector(".cursor-core");
+  if (cursor) cursor.remove();
+}
   
 function showSection(id) {
   let sections = document.querySelectorAll('.section');
