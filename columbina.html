@@ -6,6 +6,15 @@
 
   <style>
 
+    /* Disable hover effects on mobile */
+@media (hover: none) {
+  .glass:hover {
+    transform: none;
+    box-shadow: none;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+}
+
     #moon-transition {
         filter: blur(0px);
         transition: opacity 1.2s ease, filter 1.2s ease;
