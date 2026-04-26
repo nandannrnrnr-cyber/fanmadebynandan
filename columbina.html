@@ -704,6 +704,9 @@ Summons continuous Hydro AoE that follows active character.
 <script>
   
   const isPC = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (!isPC) {
+  document.querySelectorAll(".cursor-core, .cursor-trail").forEach(el => el.remove());
+}
 
 // If NOT PC → remove cursor completely
 if (!isPC) {
@@ -744,35 +747,38 @@ document.querySelectorAll(".glass").forEach(el => {
   observer.observe(el);
 });
 
-const isPC = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
 if (isPC) {
 
   const core = document.querySelector(".cursor-core");
 
-  document.addEventListener("mousemove", (e) => {
-    core.style.left = e.clientX + "px";
-    core.style.top = e.clientY + "px";
+  if (core) {
 
-    let t = document.createElement("div");
-    t.className = "cursor-trail";
-    t.style.left = e.clientX + "px";
-    t.style.top = e.clientY + "px";
+    document.addEventListener("mousemove", (e) => {
+      core.style.left = e.clientX + "px";
+      core.style.top = e.clientY + "px";
 
-    document.body.appendChild(t);
+      let t = document.createElement("div");
+      t.className = "cursor-trail";
+      t.style.left = e.clientX + "px";
+      t.style.top = e.clientY + "px";
 
-    setTimeout(() => t.remove(), 300);
-  });
+      document.body.appendChild(t);
 
-  document.querySelectorAll(".btn, .mini-box, .glass").forEach(el => {
-    el.addEventListener("mouseenter", () => {
-      core.style.transform = "scale(1.8)";
+      setTimeout(() => t.remove(), 300);
     });
 
-    el.addEventListener("mouseleave", () => {
-      core.style.transform = "scale(1)";
+    document.querySelectorAll(".btn, .mini-box, .glass").forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        core.style.transform = "scale(1.8)";
+      });
+
+      el.addEventListener("mouseleave", () => {
+        core.style.transform = "scale(1)";
+      });
     });
-  });
+
+  }
 
 }
 
