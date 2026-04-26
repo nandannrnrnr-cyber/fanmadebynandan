@@ -111,14 +111,29 @@
 
   </div>
 
-  <script>
-  window.onload = function () {
+<script>
+function openCharacter(name) {
+  try {
+    // save scroll position
+    localStorage.setItem("scrollPosition", window.scrollY);
+  } catch (e) {
+    console.log("Storage not working");
+  }
+
+  // open page (IMPORTANT: keep this outside try)
+  window.location.href = name + ".html";
+}
+
+// restore scroll when coming back
+window.onload = function () {
   const scroll = localStorage.getItem("scrollPosition");
   if (scroll !== null) {
     window.scrollTo(0, parseInt(scroll));
+    localStorage.removeItem("scrollPosition");
   }
 };
-  </script>
+
+</script>
 
 <div class="signature">
   Created by Nandan 🌙
