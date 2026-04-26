@@ -302,8 +302,8 @@ body {
 </div>
 
 <div class="toggle">
-  <div class="btn active" onclick="showSection('gameplay')">Gameplay</div>
-  <div class="btn" onclick="showSection('lore')">Lore</div>
+  <div class="btn active" onclick="showSection('gameplay', this)"
+  <div class="btn" onclick="showSection('lore', this)"
 </div>
 
 <!-- ================= LORE ================= -->
@@ -695,7 +695,7 @@ Summons continuous Hydro AoE that follows active character.
 
 <script>
 
-function showSection(id) {
+function showSection(id, el) {
   let sections = document.querySelectorAll('.section');
   let buttons = document.querySelectorAll('.btn');
 
@@ -703,7 +703,7 @@ function showSection(id) {
   buttons.forEach(b => b.classList.remove('active'));
 
   document.getElementById(id).classList.add('show');
-  event.target.classList.add('active');
+  el.classList.add('active');
 }
 
 // particles (unchanged)
