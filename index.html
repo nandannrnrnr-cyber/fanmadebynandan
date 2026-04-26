@@ -112,9 +112,12 @@
   </div>
 
   <script>
-    function openCharacter(name) {
-      window.location.href = name + ".html";
-    }
+  window.onload = function () {
+  const scroll = localStorage.getItem("scrollPosition");
+  if (scroll !== null) {
+    window.scrollTo(0, parseInt(scroll));
+  }
+};
   </script>
 
 <div class="signature">
