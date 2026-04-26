@@ -777,22 +777,23 @@ if (isPC) {
 
 
 // moon transition (unchanged)
-window.addEventListener("load", () => {
+function removeMoon() {
   const moon = document.getElementById("moon-transition");
-
   if (!moon) return;
 
+  moon.style.opacity = "0";
+  moon.style.filter = "blur(30px)";
+
   setTimeout(() => {
-    moon.style.opacity = "0";
-    moon.style.filter = "blur(30px)";
+    moon.remove();
+  }, 1200);
+}
 
-    setTimeout(() => {
-      moon.remove();
-    }, 1200);
+// Run on load
+window.addEventListener("load", removeMoon);
 
-  }, 200);
-});
-
+// 🔥 ALSO run fallback (for mobile issues)
+setTimeout(removeMoon, 1500);
 
 </script>
 
