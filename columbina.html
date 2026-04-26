@@ -197,18 +197,23 @@ body {
   opacity: 0;
 }
 
-    .glass {
+   .glass {
   background: rgba(255,255,255,0.04);
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 20px;
-  backdrop-filter: blur(14px);
   border: 1px solid rgba(168,85,247,0.3);
   transition: all 0.6s ease;
 
   opacity: 0;
   transform: translateY(40px);
+  @media (hover: hover) and (pointer: fine) {
+  .glass {
+    backdrop-filter: blur(14px);
+  }
 }
+}
+
 .glass.visible {
   opacity: 1;
   transform: translateY(0);
