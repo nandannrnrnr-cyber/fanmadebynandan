@@ -701,6 +701,25 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".glass").forEach(el => {
   observer.observe(el);
 });
+  document.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+
+  const touch = e.touches[0];
+
+  core.style.left = touch.clientX + "px";
+  core.style.top = touch.clientY + "px";
+
+  let t = document.createElement("div");
+  t.className = "cursor-trail";
+  t.style.left = touch.clientX + "px";
+  t.style.top = touch.clientY + "px";
+
+  document.body.appendChild(t);
+
+  setTimeout(() => {
+    t.remove();
+  }, 300);
+});
 
 const core = document.querySelector(".cursor-core");
 
