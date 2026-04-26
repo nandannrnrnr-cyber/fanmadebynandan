@@ -38,8 +38,24 @@
   
 }
 
-    body {
-  cursor: none;
+/* ONLY enable custom cursor on PC */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  .cursor-core,
+  .cursor-trail {
+    display: block;
+  }
+}
+
+/* DISABLE completely on phones */
+@media (hover: none) {
+  .cursor-core,
+  .cursor-trail {
+    display: none !important;
+  }
 }
 
     
@@ -689,7 +705,7 @@ function showSection(id) {
   buttons.forEach(b => b.classList.remove('active'));
 
   document.getElementById(id).classList.add('show');
-  evennt.target.classList.add('active');
+  event.target.classList.add('active');
 }
 
 // create particles
@@ -713,55 +729,39 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".glass").forEach(el => {
   observer.observe(el);
 });
-  document.addEventListener("touchmove", (e) => {
 
-  const touch = e.touches[0];
+const isPC = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  core.style.left = touch.clientX + "px";
-  core.style.top = touch.clientY + "px";
+if (isPC) {
 
-  let t = document.createElement("div");
-  t.className = "cursor-trail";
-  t.style.left = touch.clientX + "px";
-  t.style.top = touch.clientY + "px";
+  const core = document.querySelector(".cursor-core");
 
-  document.body.appendChild(t);
+  document.addEventListener("mousemove", (e) => {
+    core.style.left = e.clientX + "px";
+    core.style.top = e.clientY + "px";
 
-  setTimeout(() => {
-    t.remove();
-  }, 300);
-});
+    let t = document.createElement("div");
+    t.className = "cursor-trail";
+    t.style.left = e.clientX + "px";
+    t.style.top = e.clientY + "px";
 
+    document.body.appendChild(t);
 
-
-document.addEventListener("mousemove", (e) => {
-  // move core
-  core.style.left = e.clientX + "px";
-  core.style.top = e.clientY + "px";
-
-  // create trail
-  let t = document.createElement("div");
-  t.className = "cursor-trail";
-  t.style.left = e.clientX + "px";
-  t.style.top = e.clientY + "px";
-
-  document.body.appendChild(t);
-
-
-  // remove after delay
-  setTimeout(() => {
-    t.remove();
-  }, 300);
-});
-document.querySelectorAll(".btn, .mini-box, .glass").forEach(el => {
-  el.addEventListener("mouseenter", () => {
-    core.style.transform = "scale(1.8)";
+    setTimeout(() => t.remove(), 300);
   });
 
-  el.addEventListener("mouseleave", () => {
-    core.style.transform = "scale(1)";
+  document.querySelectorAll(".btn, .mini-box, .glass").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      core.style.transform = "scale(1.8)";
+    });
+
+    el.addEventListener("mouseleave", () => {
+      core.style.transform = "scale(1)";
+    });
   });
-});
+
+}
+
 window.addEventListener("load", () => {
   const moon = document.getElementById("moon-transition");
 
