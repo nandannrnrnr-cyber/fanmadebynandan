@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zhongli</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a00);
+      color: white;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 40px;
+      color: #facc15;
+      text-shadow: 0 0 20px #facc15;
+    }
+
+    .image-box {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .image-box img {
+      width: 260px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #facc15;
+    }
+
+    .toggle {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: rgba(250,204,21,0.3);
+      box-shadow: 0 0 10px #facc15;
+    }
+
+    .active {
+      background: #facc15;
+      color: black;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .show {
+      display: block;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(12px);
+
+      border: 1px solid rgba(250, 204, 21, 0.2);
+      box-shadow: 0 0 8px rgba(250, 204, 21, 0.08);
+
+      transition: all 0.3s ease;
+    }
+
+    .glass:hover {
+      transform: translateY(-5px) scale(1.01);
+
+      border: 1px solid rgba(250, 204, 21, 0.9);
+
+      box-shadow:
+        0 0 25px rgba(250, 204, 21, 0.8),
+        0 0 60px rgba(250, 204, 21, 0.6),
+
+        inset 0 0 20px rgba(250, 204, 21, 0.25),
+        inset 0 0 40px rgba(250, 204, 21, 0.18),
+        inset 0 0 80px rgba(250, 204, 21, 0.12);
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      color: gold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Zhongli 🪨</h1>
+
+  <div class="image-box">
+    <img src="zhongli.png">
+  </div>
+
+  <div class="toggle">
+    <div class="btn active" onclick="showSection('gameplay')">Gameplay</div>
+    <div class="btn" onclick="showSection('lore')">Lore</div>
+  </div>
+
+  <!-- LORE -->
+  <div id="lore" class="section">
+
+  <div class="glass">
+    <h2>Origins – The Birth of Morax</h2>
+    <div class="scroll">
+      <p>
+        Zhongli, also known as Morax, is one of the oldest surviving gods in Teyvat,
+        with a history spanning over 6000 years. Unlike many other deities,
+        his origins are shrouded in mystery, but he emerged as a powerful Geo entity
+        during the earliest eras of the world.
+      </p>
+      <p>
+        He witnessed the rise and fall of countless civilizations, long before
+        the establishment of the Seven Archons. His immense age gives him a unique
+        perspective on time, change, and mortality.
+      </p>
+    </div>
+  </div>
+
+  <div class="glass">
+    <h2>The Archon War</h2>
+    <div class="scroll">
+      <p>
+        During the Archon War, Morax was one of the strongest contenders.
+        He fought numerous gods and defeated powerful enemies to secure his place
+        as the Geo Archon.
+      </p>
+      <p>
+        He forged alliances with adepti such as Xiao and Cloud Retainer,
+        creating a powerful force that would later shape Liyue.
+      </p>
+      <p>
+        Unlike many gods, Morax valued order and contracts, not chaos or domination.
+        <p>
+  Morax was not merely a survivor of the Archon War—he was one of its most dominant forces.
+  While many gods struggled to endure the chaos, Morax overwhelmed his enemies with absolute power.
+</p>
+
+<p>
+  It is said that he pinned rival gods beneath the ocean floor as if they were nothing,
+  sealing them away beneath stone and sea.
+</p>
+
+<p>
+  The battlefield of Liyue was drenched in blood during these conflicts,
+  as Morax fought relentlessly to secure a future for his people.
+</p>
+      </p>
+    </div>
+  </div>
+
+  <div class="glass">
+    <h2>Creation of Liyue</h2>
+    <div class="scroll">
+      <p>
+        After the war, Morax established Liyue Harbor, one of the most prosperous
+        nations in Teyvat.
+      </p>
+      <p>
+        He ruled through contracts, believing that agreements and trust
+        should govern human society rather than divine authority alone.
+      </p>
+      <p>
+        The concept of contracts became the foundation of Liyue’s culture.
+        <p>
+  Every battle he fought and every god he defeated was done with one purpose:
+  to protect Liyue and ensure its survival in a world ruled by chaos.
+</p>
+
+<p>
+  His rule was not born from ambition, but from responsibility—
+  a contract to safeguard his land and its people at any cost.
+</p>
+
+      </p>
+    </div>
+  </div>
+
+  <div class="glass">
+    <h2>The Adepti & Yakshas</h2>
+    <div class="scroll">
+      <p>
+        Morax worked alongside adepti and Yakshas to protect Liyue from demons
+        and lingering remnants of defeated gods.
+      </p>
+      <p>
+        Many Yakshas fell due to karmic debt, leaving only Xiao as the last survivor.
+      </p>
+      <p>
+        This period highlights Morax’s burden as a god who watched his allies suffer
+        over time.
+      </p>
+    </div>
+  </div>
+
+  <div class="glass">
+    <h2>Philosophy of Contracts</h2>
+    <div class="scroll">
+      <p>
+        Zhongli believes contracts define existence itself.
+        To him, breaking a contract is equivalent to destroying trust and order.
+      </p>
+      <p>
+        This philosophy shaped Liyue’s governance and its independence from divine rule.
+      </p>
+    </div>
+  </div>
+
+  <div class="glass">
+    <h2>Retirement of an Archon</h2>
+    <div class="scroll">
+      <p>
+        After thousands of years of rule, Morax chose to step down.
+      </p>
+      <p>
+        He staged his own “death” during the Rite of Descension,
+        giving up his Gnosis and allowing humans to govern themselves.
+      </p>
+      <p>
+        This marked a major turning point—not just for Liyue,
+        but for the concept of Archons in Teyvat.
+      </p>
+    </div>
+  </div>
+
+  <div class="glass">
+    <h2>Zhongli in the Present</h2>
+    <div class="scroll">
+      <p>
+        Now living as Zhongli, he walks among mortals,
+        observing the world he once ruled.
+      </p>
+      <p>
+        He continues to value contracts and traditions,
+        but now seeks to understand humanity from a different perspective.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+  <!-- GAMEPLAY -->
+  <div id="gameplay" class="section show">
+
+    <div class="glass">
+      <h2>Character Info</h2>
+      <p>
+        ⭐ Rarity: 5★ <br><br>
+        ⚔️ Weapon: Polearm <br><br>
+        🌍 Element: Geo <br><br>
+        🧬 Constellation: Lapis Dei <br><br>
+        🏷️ Real Name: Morax <br><br>
+        🏛️ Category: Archon / God <br><br>
+        🎭 Role: Shield Support / Burst DPS
+      </p>
+    </div>
+
+    <div class="glass">
+      <h2>Playstyle</h2>
+      <p>
+        Zhongli provides the strongest shield in the game and reduces enemy resistance.
+        His playstyle revolves around survivability and burst damage.
+      </p>
+    </div>
+
+    <div class="glass">
+      <h2>Abilities</h2>
+      <p>
+        Skill: Creates a strong Geo shield<br>
+        Burst: Summons meteor dealing massive Geo damage
+      </p>
+    </div>
+
+  </div>
+
+  <a href="index.html" class="back">⬅ Back</a>
+
+</div>
+
+<script>
+function showSection(id) {
+  let sections = document.querySelectorAll('.section');
+  let buttons = document.querySelectorAll('.btn');
+
+  sections.forEach(s => s.classList.remove('show'));
+  buttons.forEach(b => b.classList.remove('active'));
+
+  document.getElementById(id).classList.add('show');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

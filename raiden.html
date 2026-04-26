@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Raiden Shogun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a, #1a0033);
+      color: white;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 40px;
+      color: #c084fc;
+      text-shadow: 0 0 20px #a855f7;
+    }
+
+    .image-box {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .image-box img {
+      width: 260px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #a855f7;
+    }
+
+    .toggle {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: rgba(168,85,247,0.3);
+      box-shadow: 0 0 10px #a855f7;
+    }
+
+    .active {
+      background: #a855f7;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .show {
+      display: block;
+    }
+
+   .glass {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(12px);
+  position: relative;
+overflow: hidden;
+
+  border: 1px solid rgba(0, 200, 255, 0.2);
+
+  /* no inner glow initially */
+  box-shadow: 0 0 8px rgba(0, 200, 255, 0.08);
+
+  transition: all 0.3s ease;
+}
+.glass::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,255,255,0.15),
+    transparent 60%
+  );
+
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+}
+
+/* hover */
+.glass:hover {
+  transform: translateY(-5px) scale(1.01);
+
+  border: 1px solid rgba(0, 200, 255, 0.9);
+
+  box-shadow:
+    /* strong outer glow */
+    0 0 25px rgba(0, 200, 255, 0.8),
+    0 0 60px rgba(0, 200, 255, 0.6),
+
+    /* THIS is the real fix — layered inner glow */
+    inset 0 0 20px rgba(0, 200, 255, 0.25),
+    inset 0 0 40px rgba(0, 200, 255, 0.18),
+    inset 0 0 80px rgba(0, 200, 255, 0.12);
+    .glass:hover::after {
+  opacity: 1;
+  transform: rotate(25deg) translateX(20%);
+}
+}
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Raiden Shogun ⚡</h1>
+
+  <div class="image-box">
+    <img src="raiden.png">
+  </div>
+
+  <!-- TOGGLE (SWAPPED ORDER) -->
+  <div class="toggle">
+    <div class="btn active" onclick="showSection('gameplay')">Gameplay</div>
+    <div class="btn" onclick="showSection('lore')">Lore</div>
+  </div>
+
+  <!-- ================= FULL LORE ================= -->
+  <div id="lore" class="section">
+
+    <div class="glass">
+      <h2>Origin: Ei & Makoto</h2>
+      <div class="scroll">
+        <p>Ei (Beelzebul) and Makoto (Baal) were twin gods...</p>
+        <p>Makoto ruled Inazuma while Ei acted as her shadow warrior...</p>
+        <p>Ei preferred battle and protection over governance...</p>
+        <p>Their bond deeply influenced Ei’s emotional foundation...</p>
+        <p>Ei witnessed many conflicts during the Archon War...</p>
+        <p>This shaped her belief that change leads to loss...</p>
+      </div>
+    </div>
+
+    <div class="glass">
+      <h2>Orobashi & Yashiori Island</h2>
+      <div class="scroll">
+        <p>Orobashi fled to Watatsumi Island after losing the Archon War...</p>
+        <p>He ruled and protected the people there...</p>
+        <p>Ei eventually defeated him in battle...</p>
+        <p>This split Yashiori Island and left lasting corruption...</p>
+        <p>The serpent’s remains caused storms and environmental damage...</p>
+      </div>
+    </div>
+
+    <div class="glass">
+      <h2>The Cataclysm</h2>
+      <div class="scroll">
+        <p>500 years ago, Khaenri’ah fell during the Cataclysm...</p>
+        <p>Makoto traveled there and was killed...</p>
+        <p>Ei arrived too late to save her...</p>
+        <p>This loss deeply traumatized Ei...</p>
+        <p>She began fearing change and impermanence...</p>
+      </div>
+    </div>
+
+    <div class="glass">
+      <h2>Creation of the Puppet</h2>
+      <div class="scroll">
+        <p>Ei created a puppet to rule in her place...</p>
+        <p>This puppet became the Raiden Shogun...</p>
+        <p>Ei entered the Plane of Euthymia...</p>
+        <p>The puppet enforced eternity without emotion...</p>
+      </div>
+    </div>
+
+    <div class="glass">
+      <h2>Vision Hunt Decree</h2>
+      <div class="scroll">
+        <p>Ei believed ambition leads to suffering...</p>
+        <p>She confiscated visions across Inazuma...</p>
+        <p>This led to rebellion and resistance...</p>
+      </div>
+    </div>
+
+    <div class="glass">
+      <h2>Archon Quest & Story</h2>
+      <div class="scroll">
+        <p>The Traveler challenges Ei’s ideals...</p>
+        <p>She begins to question eternity...</p>
+        <p>She realizes change is necessary...</p>
+        <p>Ei evolves emotionally and philosophically...</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= GAMEPLAY ================= -->
+  <div id="gameplay" class="section show">
+
+  <div class="glass">
+    <h2>Character Info</h2>
+    <p>
+      ⭐ Rarity: 5★ <br><br>
+      ⚔️ Weapon: Polearm <br><br>
+      ⚡ Element: Electro <br><br>
+      🧬 Constellation: Imperatrix Umbrosa <br><br>
+      🏷️ Real Name: Raiden Ei (Beelzebul) <br><br>
+      🏛️ Category: Archon / God <br><br>
+      🎭 Role: Burst DPS / Energy Support
+    </p>
+  </div>
+
+  <div class="glass">
+    <h2>Playstyle</h2>
+    <div class="scroll">
+      <p>
+        Raiden Shogun is designed around energy recharge and burst damage.
+        She acts as both a main damage dealer and a powerful support unit.
+      </p>
+
+      <p>
+        Her Elemental Skill provides coordinated Electro attacks whenever
+        teammates attack enemies, constantly applying Electro.
+      </p>
+
+      <p>
+        Her Elemental Burst transforms her into a sword-wielding state,
+        dealing massive AoE Electro damage while restoring energy to the team.
+      </p>
+
+      <p>
+        The more energy her teammates consume, the stronger her Burst becomes,
+        making her extremely valuable in high-energy team compositions.
+      </p>
+    </div>
+  </div>
+
+  <div class="glass">
+    <h2>Abilities Overview</h2>
+    <div class="scroll">
+      <p>
+        <b>Elemental Skill:</b> Baleful Omen — Applies Electro damage and enables coordinated attacks.
+      </p>
+
+      <p>
+        <b>Elemental Burst:</b> Secret Art: Musou Shinsetsu — Massive burst damage and sword stance.
+      </p>
+
+      <p>
+        <b>Passive:</b> Enhances energy recharge scaling and team synergy.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+  <a href="index.html" class="back">⬅ Back</a>
+
+</div>
+
+<script>
+function showSection(id) {
+  let sections = document.querySelectorAll('.section');
+  let buttons = document.querySelectorAll('.btn');
+
+  sections.forEach(s => s.classList.remove('show'));
+  buttons.forEach(b => b.classList.remove('active'));
+
+  document.getElementById(id).classList.add('show');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
