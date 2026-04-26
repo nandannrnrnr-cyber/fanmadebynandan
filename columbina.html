@@ -14,7 +14,7 @@
     border: 1px solid rgba(255,255,255,0.2);
   }
 
-  /* REMOVE cursor completely on phones */
+  /* remove cursor fully on phone */
   .cursor-core,
   .cursor-trail {
     display: none !important;
@@ -26,17 +26,23 @@
 }
 
 #moon-transition {
+  filter: blur(0px);
   transition: opacity 1.2s ease, filter 1.2s ease;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, rgba(255,245,200,0.9), #000);
+  background: radial-gradient(circle at center, 
+    rgba(255, 245, 200, 0.9) 0%, 
+    rgba(10,10,30,1) 60%, 
+    black 100%);
   z-index: 2000;
+  opacity: 1;
+  pointer-events: none;
 }
 
-/* ONLY PC cursor */
+/* cursor only on PC */
 @media (hover: hover) and (pointer: fine) {
   body {
     cursor: none;
@@ -51,22 +57,25 @@
   border-radius: 50%;
   pointer-events: none;
   z-index: 999;
-  box-shadow: 0 0 20px #fff59d;
+  box-shadow:
+    0 0 8px #fff9c4,
+    0 0 18px #fff59d,
+    0 0 35px rgba(255, 245, 157, 0.8);
   transform: translate(-50%, -50%);
+  transition: transform 0.15s ease;
 }
 
 .cursor-trail {
   position: fixed;
   width: 8px;
   height: 8px;
-  background: rgba(255,245,157,0.6);
+  background: rgba(255, 245, 157, 0.6);
   border-radius: 50%;
   pointer-events: none;
   z-index: 998;
   filter: blur(1.5px);
 }
 
-/* YOUR ORIGINAL DESIGN (UNCHANGED) */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -84,6 +93,7 @@ h1 {
   text-align: center;
   font-size: 42px;
   color: #c084fc;
+  text-shadow: 0 0 25px #a855f7;
 }
 
 .image-box {
@@ -95,12 +105,14 @@ h1 {
 .image-box img {
   width: 260px;
   border-radius: 20px;
+  box-shadow: 0 0 40px #a855f7;
 }
 
 .toggle {
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .btn {
@@ -123,10 +135,12 @@ h1 {
 }
 
 .glass {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.04);
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 20px;
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(168,85,247,0.3);
 }
 
 .scroll {
@@ -136,7 +150,10 @@ h1 {
 
 .back {
   display: inline-block;
-  margin-top: 20px;
+  padding: 10px 18px;
+  border-radius: 20px;
+  background: rgba(168,85,247,0.2);
+  border: 1px solid rgba(168,85,247,0.5);
   color: #c084fc;
   text-decoration: none;
 }
@@ -148,7 +165,7 @@ h1 {
 
 <div id="moon-transition"></div>
 
-<!-- ONLY CREATE CURSOR ON PC -->
+<!-- cursor created ONLY on PC -->
 <script>
 const isPC = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 if (isPC) {
@@ -161,7 +178,7 @@ if (isPC) {
 <h1>Columbina 🌙</h1>
 
 <div class="image-box">
-  <img src="columbina.png">
+  <img src="columbina.png" loading="lazy">
 </div>
 
 <div class="toggle">
@@ -169,32 +186,37 @@ if (isPC) {
   <div class="btn" onclick="showSection('lore')">Lore</div>
 </div>
 
-<!-- KEEP YOUR FULL LORE HERE (UNCHANGED) -->
+<!-- ================= LORE ================= -->
 <div id="lore" class="section">
-  <!-- PASTE YOUR FULL LORE CONTENT HERE EXACTLY -->
+  <!-- YOUR FULL ORIGINAL LORE CONTENT (UNCHANGED) -->
 </div>
 
-<!-- KEEP YOUR FULL GAMEPLAY HERE (UNCHANGED) -->
+<!-- ================= GAMEPLAY ================= -->
 <div id="gameplay" class="section show">
-  <!-- PASTE YOUR FULL GAMEPLAY CONTENT HERE EXACTLY -->
+  <!-- YOUR FULL ORIGINAL GAMEPLAY CONTENT (UNCHANGED) -->
 </div>
 
-<a href="index.html" class="back">⬅ Back</a>
+<div class="glass">
+  <a href="index.html" class="back">⬅ Back</a>
+</div>
 
 </div>
 
 <script>
 
 function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('show'));
-  document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+  let sections = document.querySelectorAll('.section');
+  let buttons = document.querySelectorAll('.btn');
+
+  sections.forEach(s => s.classList.remove('show'));
+  buttons.forEach(b => b.classList.remove('active'));
+
   document.getElementById(id).classList.add('show');
   event.target.classList.add('active');
 }
 
-/* CURSOR ONLY ON PC */
+/* cursor logic ONLY for PC */
 if (isPC) {
-
   const core = document.querySelector(".cursor-core");
 
   document.addEventListener("mousemove", (e) => {
@@ -209,11 +231,11 @@ if (isPC) {
     document.body.appendChild(t);
     setTimeout(() => t.remove(), 300);
   });
-
 }
 
 window.addEventListener("load", () => {
   const moon = document.getElementById("moon-transition");
+
   setTimeout(() => {
     moon.style.opacity = "0";
     moon.style.filter = "blur(30px)";
