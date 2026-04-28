@@ -90,10 +90,42 @@
       margin-top: 20px;
       color: #2dd4bf;
     }
+
+    .top-back {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  text-decoration: none;
+
+  font-size: 22px;
+  color: #2dd4bf;
+
+  background: rgba(45,212,191,0.15);
+  border: 1px solid rgba(45,212,191,0.4);
+
+  z-index: 9999;
+  transition: 0.3s;
+}
+
+.top-back:hover {
+  background: #2dd4bf;
+  color: black;
+  box-shadow: 0 0 15px #2dd4bf;
+}
   </style>
 </head>
 
 <body>
+  <a href="index.html" class="top-back">←</a>
 
 <div class="container">
 
@@ -308,7 +340,6 @@ Burst: Massive vortex
 
 </div>
 
-<a href="index.html" class="back">⬅ Back</a>
 
 </div>
 
