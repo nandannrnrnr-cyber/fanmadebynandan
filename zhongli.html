@@ -97,17 +97,26 @@
         inset 0 0 80px rgba(250, 204, 21, 0.12);
     }
 
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 30px;
-      color: gold;
-      text-decoration: none;
-    }
+    .back-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 26px;
+  text-decoration: none;
+  color: #facc15;
+  z-index: 999;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 10px #facc15;
+}
   </style>
 </head>
 
 <body>
+  <a href="index.html" class="back-btn">⬅</a>
 
 <div class="container">
 
@@ -298,7 +307,6 @@
 
   </div>
 
-  <a href="index.html" class="back">⬅ Back</a>
 
 </div>
 
