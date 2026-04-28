@@ -120,17 +120,33 @@ overflow: hidden;
     inset 0 0 20px rgba(0, 200, 255, 0.25),
     inset 0 0 40px rgba(0, 200, 255, 0.18),
     inset 0 0 80px rgba(0, 200, 255, 0.12);
+}
     .glass:hover::after {
   opacity: 1;
   transform: rotate(25deg) translateX(20%);
 }
+
+  .back-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 26px;
+  text-decoration: none;
+  color: #c084fc;
+  z-index: 999;
+  transition: 0.3s;
 }
 
+.back-btn:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 10px #a855f7;
+}
 
   </style>
 </head>
 
 <body>
+  <a href="index.html" class="back-btn">⬅</a>
 
 <div class="container">
 
@@ -274,7 +290,6 @@ overflow: hidden;
 
 </div>
 
-  <a href="index.html" class="back">⬅ Back</a>
 
 </div>
 
