@@ -57,58 +57,47 @@
 
 .cursor-core {
   position: fixed;
-  width: 18px;
-  height: 18px;
+  left: 0;
+  top: 0;
+
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  color: #e8f9ff;
+
   pointer-events: none;
   z-index: 9999;
 
-  background:
-    linear-gradient(#dff7ff, #dff7ff) center/2px 100% no-repeat,
-    linear-gradient(#dff7ff, #dff7ff) center/100% 2px no-repeat;
-
-  box-shadow:
-    0 0 8px #7dd3fc,
-    0 0 20px rgba(125,211,252,0.7);
-
   transform: translate(-50%, -50%);
-}
 
-.cursor-core::before,
-.cursor-core::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(#dff7ff, #dff7ff) center/2px 100% no-repeat,
-    linear-gradient(#dff7ff, #dff7ff) center/100% 2px no-repeat;
-}
-
-.cursor-core::before {
-  transform: rotate(45deg);
-}
-
-.cursor-core::after {
-  transform: rotate(-45deg);
+  text-shadow:
+    0 0 6px #7dd3fc,
+    0 0 15px #38bdf8,
+    0 0 25px rgba(125,211,252,0.8);
 }
 
 
 .cursor-trail {
   position: fixed;
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
+
   background: #dff7ff;
+
   pointer-events: none;
   z-index: 9998;
 
   box-shadow:
-    0 0 4px #7dd3fc,
-    0 0 10px rgba(125,211,252,0.7);
+    0 0 5px #7dd3fc,
+    0 0 12px rgba(125,211,252,0.7);
 
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
     body {
@@ -339,7 +328,7 @@ p { color: #cce8f4; line-height: 1.6; }
 <body>
     <div id="void-transition"></div>
 
- <div class="cursor-core"></div>
+ <div class="cursor-core">❄</div>
 
 <div class="container">
 
@@ -653,9 +642,7 @@ if (isPC) {
     flake.style.opacity = "0.9";
 
     flake.style.transform =
-    "translate(-50%, -50%) scale(0.8)";
-    clearTimeout(flake.fadeTimer);
-
+     "translate(-50%, -50%)";
     flake.fadeTimer = setTimeout(() => {
   flake.style.opacity = "0";
 }, 80);
