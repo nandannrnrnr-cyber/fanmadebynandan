@@ -361,12 +361,79 @@ h2 {
 }
 
 p { color: #cce8f4; line-height: 1.6; }
+/* ======================
+   DESKTOP SPACE BACKGROUND
+====================== */
+
+#space-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: twinkle linear infinite;
+}
+
+@keyframes twinkle {
+  0%,100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.25;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0),
+      rgba(180,220,255,1)
+    );
+
+  transform: rotate(-30deg);
+  animation: shoot 3s linear forwards;
+}
+
+@keyframes shoot {
+  from {
+    transform:
+      translate(0,0)
+      rotate(-30deg);
+    opacity: 1;
+  }
+
+  to {
+    transform:
+      translate(-600px,600px)
+      rotate(-30deg);
+    opacity: 0;
+  }
+}
 
  </style>
 </head>
 
 <body>
     <div id="void-transition"></div>
+    <div id="space-bg"></div>
 
  <div class="cursor-core">❄</div>
 
@@ -720,6 +787,68 @@ function removeVoid() {
 
 window.addEventListener("load", removeVoid);
 setTimeout(removeVoid, 1500);
+
+// =====================
+// DESKTOP SPACE BACKGROUND
+// =====================
+
+if (isPC) {
+
+  const bg = document.getElementById("space-bg");
+
+  // Stars
+  for (let i = 0; i < 80; i++) {
+
+    const s = document.createElement("div");
+    s.className = "star";
+
+    const size = Math.random() * 3 + 2;
+
+    s.style.width = size + "px";
+    s.style.height = size + "px";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = Math.random() * 100 + "vh";
+    s.style.animationDuration =
+      (2 + Math.random() * 4) + "s";
+
+    bg.appendChild(s);
+  }
+
+  // Distant planet
+  const p = document.createElement("div");
+
+  p.className = "planet";
+  p.style.width = "180px";
+  p.style.height = "180px";
+  p.style.right = "85vw";
+  p.style.top = "70px";
+
+  p.style.background =
+    "radial-gradient(circle,#6aa5ff,#162040)";
+
+  bg.appendChild(p);
+
+  // Shooting star
+  setInterval(() => {
+
+    const ss = document.createElement("div");
+    ss.className = "shooting-star";
+
+    ss.style.left =
+      (50 + Math.random() * 50) + "vw";
+
+    ss.style.top =
+      Math.random() * 40 + "vh";
+
+    bg.appendChild(ss);
+
+    setTimeout(() => {
+      ss.remove();
+    }, 3000);
+
+  }, 7000);
+
+}
 
 </script>
 
