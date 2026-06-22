@@ -281,6 +281,41 @@ body {
         color: #7dd3fc;
         text-decoration: none;
         transition: 0.3s;
+        .top-back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  font-size: 32px;
+  color: #7dd3fc;
+
+  background: rgba(5, 20, 40, 0.45);
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  border-radius: 50%;
+
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+
+  transition: 0.3s;
+}
+
+.top-back:hover {
+  color: white;
+  border-color: #7dd3fc;
+  box-shadow:
+    0 0 15px rgba(125,211,252,0.8),
+    0 0 30px rgba(125,211,252,0.35);
+
+  transform: scale(1.1);
+}
     }
 
     .back:hover {
@@ -331,6 +366,8 @@ p { color: #cce8f4; line-height: 1.6; }
  <div class="cursor-core">❄</div>
 
 <div class="container">
+
+<a href="index.html" class="top-back">←</a>
 
 <h1>Skirk ❄️</h1>
 
@@ -463,9 +500,6 @@ Despite her coldness, she demonstrates a quiet, grudging care — not weakness, 
 </div>
 </div>
 
-<div class="glass">
-  <a href="index.html" class="back">⬅ Back</a>
-</div>
 
 </div>
 
