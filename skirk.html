@@ -57,8 +57,8 @@
 
 .cursor-core {
   position: fixed;
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   background: #a8e6ff;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   pointer-events: none;
@@ -71,7 +71,7 @@
 
   transform: translate(-50%, -50%) rotate(0deg);
   transition: transform 0.15s ease;
-  animation: spinCore 4s linear infinite;
+  animation: spinCore 8s linear infinite;
 }
 
 @keyframes spinCore {
@@ -81,13 +81,39 @@
 
 .cursor-trail {
   position: fixed;
-  width: 8px;
-  height: 8px;
-  background: rgba(125, 211, 252, 0.7);
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  width: 7px;
+  height: 7px;
+  background: rgba(180, 235, 255, 0.85);
+
+  clip-path: polygon(
+    50% 0%,
+    58% 28%,
+    85% 15%,
+    72% 42%,
+    100% 50%,
+    72% 58%,
+    85% 85%,
+    58% 72%,
+    50% 100%,
+    42% 72%,
+    15% 85%,
+    28% 58%,
+    0% 50%,
+    28% 42%,
+    15% 15%,
+    42% 28%
+  );
+
   pointer-events: none;
   z-index: 9998;
-  filter: blur(0.8px);
+
+  box-shadow:
+    0 0 5px #7dd3fc,
+    0 0 12px rgba(125,211,252,0.6);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
 }
 
     body {
@@ -598,7 +624,7 @@ document.querySelectorAll(".glass").forEach(el => {
 
 
 // =====================
-// CURSOR (PC only)
+// SMOOTH SNOWFLAKE CURSOR
 // =====================
 
 const isPC = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -606,47 +632,59 @@ const isPC = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 if (isPC) {
 
   const core = document.querySelector(".cursor-core");
-  let trailTimeout;
+
+  const flakes = [];
+  const MAX_FLAKES = 8;
+
+  for (let i = 0; i < MAX_FLAKES; i++) {
+    const f = document.createElement("div");
+    f.className = "cursor-trail";
+    f.style.opacity = "0";
+    document.body.appendChild(f);
+    flakes.push(f);
+  }
+
+  let index = 0;
 
   document.addEventListener("mousemove", (e) => {
-    if (!core) return;
 
     core.style.left = e.clientX + "px";
     core.style.top = e.clientY + "px";
 
-    // ice flake trail
-    let t = document.createElement("div");
-    t.className = "cursor-trail";
-    t.style.left = e.clientX + "px";
-    t.style.top = e.clientY + "px";
-    t.style.transform = `translate(-50%, -50%) rotate(${Math.random()*360}deg)`;
-    t.style.opacity = "0.9";
-    t.style.transition = "opacity 0.4s ease";
+    const flake = flakes[index];
 
-    document.body.appendChild(t);
+    flake.style.left = e.clientX + "px";
+    flake.style.top = e.clientY + "px";
+    flake.style.opacity = "0.9";
 
-    requestAnimationFrame(() => {
-      setTimeout(() => { t.style.opacity = "0"; }, 50);
-    });
+    flake.style.transform =
+      `translate(-50%, -50%) scale(${0.6 + Math.random() * 0.5}) rotate(${Math.random()*360}deg)`;
 
-    setTimeout(() => t.remove(), 450);
+    clearTimeout(flake.fadeTimer);
+
+    flake.fadeTimer = setTimeout(() => {
+      flake.style.opacity = "0";
+    }, 120);
+
+    index++;
+    if (index >= MAX_FLAKES) index = 0;
   });
 
   document.querySelectorAll(".btn, .mini-box, .glass").forEach(el => {
     el.addEventListener("mouseenter", () => {
-      if (core) core.style.transform = "translate(-50%, -50%) scale(1.8)";
+      core.style.transform =
+        "translate(-50%, -50%) scale(1.5)";
     });
 
     el.addEventListener("mouseleave", () => {
-      if (core) core.style.transform = "translate(-50%, -50%) scale(1)";
+      core.style.transform =
+        "translate(-50%, -50%) scale(1)";
     });
   });
 
 } else {
-  const core = document.querySelector(".cursor-core");
-  if (core) core.remove();
-
-  document.querySelectorAll(".cursor-trail").forEach(el => el.remove());
+  document.querySelector(".cursor-core")?.remove();
+  document.querySelectorAll(".cursor-trail").forEach(e => e.remove());
 }
 
 
