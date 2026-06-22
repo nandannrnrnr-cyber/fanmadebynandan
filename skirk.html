@@ -59,61 +59,56 @@
   position: fixed;
   width: 18px;
   height: 18px;
-  background: #a8e6ff;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   pointer-events: none;
   z-index: 9999;
 
+  background:
+    linear-gradient(#dff7ff, #dff7ff) center/2px 100% no-repeat,
+    linear-gradient(#dff7ff, #dff7ff) center/100% 2px no-repeat;
+
   box-shadow:
     0 0 8px #7dd3fc,
-    0 0 20px #38bdf8,
-    0 0 40px rgba(56, 189, 248, 0.7);
+    0 0 20px rgba(125,211,252,0.7);
 
-  transform: translate(-50%, -50%) rotate(0deg);
-  transition: transform 0.15s ease;
-  animation: spinCore 8s linear infinite;
+  transform: translate(-50%, -50%);
 }
 
-@keyframes spinCore {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
+.cursor-core::before,
+.cursor-core::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(#dff7ff, #dff7ff) center/2px 100% no-repeat,
+    linear-gradient(#dff7ff, #dff7ff) center/100% 2px no-repeat;
 }
+
+.cursor-core::before {
+  transform: rotate(45deg);
+}
+
+.cursor-core::after {
+  transform: rotate(-45deg);
+}
+
 
 .cursor-trail {
   position: fixed;
-  width: 7px;
-  height: 7px;
-  background: rgba(180, 235, 255, 0.85);
-
-  clip-path: polygon(
-    50% 0%,
-    58% 28%,
-    85% 15%,
-    72% 42%,
-    100% 50%,
-    72% 58%,
-    85% 85%,
-    58% 72%,
-    50% 100%,
-    42% 72%,
-    15% 85%,
-    28% 58%,
-    0% 50%,
-    28% 42%,
-    15% 15%,
-    42% 28%
-  );
-
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #dff7ff;
   pointer-events: none;
   z-index: 9998;
 
   box-shadow:
-    0 0 5px #7dd3fc,
-    0 0 12px rgba(125,211,252,0.6);
+    0 0 4px #7dd3fc,
+    0 0 10px rgba(125,211,252,0.7);
 
   transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
     body {
@@ -634,7 +629,7 @@ if (isPC) {
   const core = document.querySelector(".cursor-core");
 
   const flakes = [];
-  const MAX_FLAKES = 8;
+  const MAX_FLAKES = 4;
 
   for (let i = 0; i < MAX_FLAKES; i++) {
     const f = document.createElement("div");
@@ -658,13 +653,12 @@ if (isPC) {
     flake.style.opacity = "0.9";
 
     flake.style.transform =
-      `translate(-50%, -50%) scale(${0.6 + Math.random() * 0.5}) rotate(${Math.random()*360}deg)`;
-
+    "translate(-50%, -50%) scale(0.8)";
     clearTimeout(flake.fadeTimer);
 
     flake.fadeTimer = setTimeout(() => {
-      flake.style.opacity = "0";
-    }, 120);
+  flake.style.opacity = "0";
+}, 80);
 
     index++;
     if (index >= MAX_FLAKES) index = 0;
